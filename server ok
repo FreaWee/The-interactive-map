@@ -1,0 +1,65 @@
+import express, { Request, Response } from "express";
+import cors from "cors";
+import fs from "fs";
+import path from "path";
+
+const app = express();
+app.use(cors({ origin: "http://localhost:3000" }));
+
+const JSON_FILE_PATH = path.join(__dirname, "data.json");
+
+// Route pour récupérer et sauvegarder les données depuis Airtable
+app.get("/api", async (req: Request, res: Response): Promise<void> => {
+  try {
+    // Appel à l'API Airtable
+    const response = await globalThis.fetch(
+      "https://api.airtable.com/v0/appRbmrbJj8DO4Fmb/tblVX5Suv30stk1P8",
+      {
+        headers: {
+          Authorization: `Bearer patqGqNfjpUuvUtE1.9f0b516c467297b58ba61056f410438c60a6e7518e0d636e0cc002cac4bd690a`,
+        },
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error(`Erreur API Airtable : ${response.statusText}`);
+    }
+
+    // Récupère et formate les données
+    const data = await response.json();
+    const formattedData = data.records.reduce((acc: any, record: any) => {
+      acc[record.id] = {
+        companyName: record.fields.CompanyName || "Nom inconnu",
+        logo: record.fields.Logo || "",
+        innovationDriver: record.fields.InnovationDriver || "Non spécifié",
+      };
+      return acc;
+    }, {});
+    // Sauvegarde les données formatées dans un fichier JSON
+    fs.writeFileSync(
+      JSON_FILE_PATH,
+      JSON.stringify(formattedData, null, 2),
+      "utf-8"
+    );
+
+    console.log("Fichier JSON créé avec succès :", JSON_FILE_PATH);
+
+    // Retourne le contenu du fichier JSON
+    const fileContent = fs.readFileSync(JSON_FILE_PATH, "utf-8");
+    res.status(200).json(JSON.parse(fileContent)); // Lit et retourne le fichier JSON
+  } catch (error) {
+    console.error(
+      "Erreur lors de la récupération ou de la sauvegarde des données :",
+      error
+    );
+    res
+      .status(500)
+      .json({ error: "Erreur lors de la récupération des données" });
+  }
+});
+
+// Écoute sur le port 5000
+const PORT = 5000;
+app.listen(PORT, () => {
+  console.log(`Serveur en cours d'exécution sur http://localhost:${PORT}`);
+});

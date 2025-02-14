@@ -5,7 +5,7 @@
   "main": "dist/server.js",
   "scripts": {
     "start": "node dist/server/server.js && npm start",
-    "build": "",
+    "build": "tsc",
     "dev": "cd interactive-map && npm run dev"
   },
   "dependencies": {

@@ -38,7 +38,7 @@ app.get("/api", async (req, res) => {
     }
 });
 // Écoute sur le port 5000
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-    console.log(`Serveur en cours d'exécution sur http://localhost:${PORT}`);
+    console.log(`Serveur en cours d'exécution sur ${PORT}`);
 });

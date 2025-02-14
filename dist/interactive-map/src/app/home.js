@@ -68,10 +68,8 @@ export default function Home() {
         setFilteredData(filteredItems);
         console.log("Données filtrées par Innovation Driver :", filteredItems);
     };
-    return (<div className="m-0 bg-[url('/back.png')] bg-cover bg-no-repeat min-h-screen w-full flex justify-center">
-      <div className="flex flex-col justify-center items-center min-h-screen max-w-full">
-        {/* Titre */}
-        <div className="flex justify-center"></div>
+    return (<div className="m-0 bg-[url('/back.png')] bg-cover bg-no-repeat h-screen w-full flex justify-center">
+      <div className="flex flex-col min-h-screen justify-start max-w-full">
         {/* Bouton Startup */}
         <div className="flex justify-center mt-6 ">
           <Button text="Startups" handleClick={handleStartupClick}/>
@@ -96,18 +94,23 @@ export default function Home() {
               </div>))}
           </div>)}
 
-        {/* Tableau de données filtrées */}
-        <div className="w-3/4 m-auto">
-          {filteredData.length > 0 ? (<div className="grid grid-cols-3 bg-blue-400/50 border border-blue-200 gap-10 rounded-lg p-2 ">
-              {filteredData.map((item, index) => (<div key={index} className="text-[#325084] text-xl">
+        {filteredData.length > 0 ? (<div className="grid grid-cols-3 mt-10 bg-blue-400/50 border border-blue-200 gap-10 rounded-lg p-2 ">
+            {filteredData.map((item, index) => {
+                // Ajoute "https://" si l'URL ne contient pas déjà "http"
+                const websiteUrl = item.website.startsWith("http")
+                    ? item.website
+                    : `https://${item.website}`;
+                return (<div key={index} className="text-[#325084] text-xl">
                   <ul>
                     <li className="flex justify-center">
-                      <img className="h-12 duration-1000 ease-in" src={item.logo[0]?.url || "/placeholder-logo.png"}/>
+                      <a href={websiteUrl} target="_blank" rel="noopener noreferrer">
+                        <img className="h-12 hover:animat-pulse" src={item.logo[0]?.url || "/placeholder-logo.png"} alt={item.companyName}/>
+                      </a>
                     </li>
                   </ul>
-                </div>))}
-            </div>) : (selectedKey && <p className="text-center text-red-500 mt-4"></p>)}
-        </div>
+                </div>);
+            })}
+          </div>) : (selectedKey && <p className="text-center text-red-500 mt-4"></p>)}
       </div>
     </div>);
 }

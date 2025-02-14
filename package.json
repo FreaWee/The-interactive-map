@@ -6,7 +6,7 @@
   "scripts": {
     "start": "rimraf dist && tsc nodemon server",
     "build": "tsc",
-    "dev": "ts-node server/server.ts"
+    "dev": "cd interactive-map && npm run dev"
   },
   "dependencies": {
     "cors": "^2.8.5",

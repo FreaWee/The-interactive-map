@@ -7,8 +7,8 @@ export default function Header() {
           <i className=" fa-solid fa-house"></i>
         </div>
       </div>
-      <h1 className="mb-10 bg-white text-3xl text-[#325084] text-center font-serif">
+      <div className="mb-6 bg-white text-3xl text-[#325084] text-center font-serif">
         The Interactive-Map <div className="text-xs ">By EightySeven ©</div>
-      </h1>
+      </div>
     </>);
 }

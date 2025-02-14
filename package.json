@@ -4,9 +4,9 @@
   "description": "Serveur Node.js avec TypeScript pour interagir avec Airtable",
   "main": "dist/server.js",
   "scripts": {
-    "start": "rimraf dist && tsc nodemon server",
-    "build": "tsc",
-    "dev": "cd interactive-map && npm run dev"
+    "start": "",
+    "build": "",
+    "dev": ""
   },
   "dependencies": {
     "cors": "^2.8.5",

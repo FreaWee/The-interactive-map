@@ -4,7 +4,7 @@
   "description": "Serveur Node.js avec TypeScript pour interagir avec Airtable",
   "main": "dist/server.js",
   "scripts": {
-    "start": "",
+    "start": "node dist/server/server.js && npm start",
     "build": "",
     "dev": "cd interactive-map && npm run dev"
   },

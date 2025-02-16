@@ -19,7 +19,7 @@ export default function Home() {
     const [activeButton, setActiveButton] = useState("");
     // Fonction pour fetch les données depuis le serveur local
     useEffect(() => {
-        fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/data`)
+        fetch(`${process.env.NEXT_PUBLIC_API_URL}/api`)
             .then((response) => {
             if (!response.ok) {
                 throw new Error("Erreur lors de la récupération des données");

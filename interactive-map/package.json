@@ -1,9 +1,9 @@
 {
   "name": "table-creator",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "scripts": {
-    "dev": "",
+    "dev": "cd interactive-map && npm run dev",
     "build": "",
     "start": "",
     "lint": "next lint"

@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node dist/server/server.js && npm start",
     "build": "",
-    "dev": "cd interactive-map && npm run dev"
+    "dev": ""
   },
   "dependencies": {
     "cors": "^2.8.5",

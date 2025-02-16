@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": false,
   "scripts": {
-    "dev": "next dev",
+    "dev": "cd interactive-map && npm run dev",
     "build": "",
     "start": "",
     "lint": "next lint"

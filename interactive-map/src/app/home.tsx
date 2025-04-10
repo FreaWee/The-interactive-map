@@ -41,7 +41,7 @@ export default function Home() {
 
   // Fonction pour fetch les données depuis le serveur local
   useEffect(() => {
-    fetch(`${process.env.NEXT_PUBLIC_API_URL}/api`)
+    fetch("http://localhost:5000/api")
       .then((response) => {
         if (!response.ok) {
           throw new Error("Erreur lors de la récupération des données");
@@ -88,28 +88,36 @@ export default function Home() {
       item.category.includes(filterValue)
     );
     console.log("Startup Data avant filtrage :", startupData);
-    setFilteredData(filteredData);
+    setFilteredData([]);
 
     console.log("Valeur de filtre (Category) :", filterValue);
     console.log("Résultat après filtrage :", filteredData);
 
     setSelectedKey(filterValue);
-    setShowButtons2(false);
+    setShowButtons2(true);
     setActiveButton(activeButton);
 
     console.log("Catégorie sélectionnée :", filteredData);
   };
 
   // 3. Boutons secondaires : filtrer par Innovation Driver
-  const handleFilterClick = (filterValue) => {
-    const filteredItems = filteredData.filter((item) =>
-      Array.isArray(
-        item.innovationDriver && item.innovationDriver.includes(filterValue)
-      )
+
+  const handleFilterClick = (filterValue: string) => {
+    console.log("Clé de filtrage actuelle :", selectedKey);
+    console.log(
+      "Données de la catégorie sélectionnée :",
+      data.filter((item) => item.category === selectedKey)
     );
 
-    setFilteredData(filteredItems);
+    const filteredItems = data.filter(
+      (item) =>
+        item.category === selectedKey &&
+        Array.isArray(item.innovationDriver) &&
+        item.innovationDriver.includes(filterValue)
+    );
+
     console.log("Données filtrées par Innovation Driver :", filteredItems);
+    setFilteredData(filteredItems);
   };
 
   return (

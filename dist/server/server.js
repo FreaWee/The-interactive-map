@@ -8,7 +8,7 @@ app.get("/api", async (req, res) => {
         // Appel à l'API Airtable
         const response = await globalThis.fetch("https://api.airtable.com/v0/appRbmrbJj8DO4Fmb/tblVX5Suv30stk1P8", {
             headers: {
-                Authorization: `Bearer patqGqNfjpUuvUtE1.9f0b516c467297b58ba61056f410438c60a6e7518e0d636e0cc002cac4bd690a`,
+                Authorization: `Bearer patqGqNfjpUuvUtE1.d2c5786c6a19799b5012e3760afcbfba70328cb13ffef1f9361f4a50e92d1043`,
             },
         });
         if (!response.ok) {

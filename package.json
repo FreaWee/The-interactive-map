@@ -4,8 +4,8 @@
   "description": "Serveur Node.js avec TypeScript pour interagir avec Airtable",
   "main": "dist/server.js",
   "scripts": {
-    "start": "tsc",
-    "build": "node dist/server/server.js && npm start",
+    "start": "node dist/server/server.js && npm start",
+    "build": "tsc",
     "dev": ""
   },
   "dependencies": {
